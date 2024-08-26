@@ -1,0 +1,2 @@
+class PlayerCondition < ApplicationRecord
+end

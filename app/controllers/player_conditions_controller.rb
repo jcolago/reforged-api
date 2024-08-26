@@ -1,0 +1,2 @@
+class PlayerConditionsController < ApplicationController
+end

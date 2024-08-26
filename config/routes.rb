@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :player_conditions
   resources :conditions
   resources :players
   resources :monsters
