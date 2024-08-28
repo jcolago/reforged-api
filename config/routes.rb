@@ -5,7 +5,15 @@ Rails.application.routes.draw do
       resources :conditions
       resources :players
       resources :monsters
-      resources :games
+
+      resources :games do
+        member do
+          get "monsters"
+          post "add_monster"
+          delete "remove_monster/:monster_id", to: "games#remove_monster"
+        end
+      end
+
       resources :users
       # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

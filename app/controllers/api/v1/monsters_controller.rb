@@ -35,10 +35,32 @@ module Api
         head :no_content
       end
 
+      def monsters
+        @game = Game.find(params[:id])
+        render json: @game.monsters
+      end
+
+      def add_monster
+        @game = Game.find(params[:id])
+        @monster = @game.monsters.build(monster_params)
+        if @monster.save
+          render json: @monster, status: :created
+        else
+          render json: @monster.errors, status: :unprocessable_entity
+        end
+      end
+
+      def remove_monster
+        @game = Game.find(params[:id])
+        @monster = @game.monsters.find(params[:monster_id])
+        @monster.destroy
+        head :no_content
+      end
+
       private
 
       def monster_params
-        params.require(:monster).permit(:name, :size, :alignmanet, :armor_class, :hit_points, :speed, :resistances, :p_bonus, :attacks, :displayed, :game_id)
+        params.require(:monster).permit(:name, :size, :alignmanet, :armor_class, :hit_points, :speed, :resistances, :p_bonus, :attacks, :displayed)
       end
     end
   end
