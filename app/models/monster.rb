@@ -1,5 +1,5 @@
 class Monster < ApplicationRecord
-  belongs_to :games
+  belongs_to :game
 
   validates :name, presence: true
   validates :size, :alignment, :armor_class, :hit_points, :speed, :p_bonus, presence: true, numericality: { only_integer: true }
