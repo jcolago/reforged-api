@@ -34,7 +34,7 @@ module Api
         @user.destroy
         head :no_content
       end
-      
+
       private
 
       def user_params
@@ -46,9 +46,9 @@ module Api
         @user = User.find_by(email: params[:email])
         if @user&.authenticate(params[:password])
           # Here you would generate and return a token for authentication
-          render json: { message: 'Logged in successfully', user_id: @user.id }
+          render json: { message: "Logged in successfully", user_id: @user.id }
         else
-          render json: { error: 'Invalid email or password' }, status: :unauthorized
+          render json: { error: "Invalid email or password" }, status: :unauthorized
         end
       end
     end
