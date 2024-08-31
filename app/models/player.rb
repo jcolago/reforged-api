@@ -6,6 +6,9 @@ class Player < ApplicationRecord
   validates :displayed, inclusion: { in: [ true, false ] }
   validates :game_id, presence: true
 
+  has_many :player_conditions
+  has_many :conditions, through: :player_conditions
+
   validate :current_hp_not_exceeding_total_hp
 
   before_save :calculate_ability_bonuses
