@@ -33,5 +33,6 @@ class CreatePlayers < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+    add_index :players, :game_id
   end
 end

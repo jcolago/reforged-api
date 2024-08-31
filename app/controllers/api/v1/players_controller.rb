@@ -35,6 +35,15 @@ module Api
         head :no_content
       end
 
+      def update_hp
+        @player = Player.find(params[:id])
+        if @player.update(current_hp: params[:current_hp])
+          render json: @player
+        else
+          render json: @player.errors, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def player_params
