@@ -7,7 +7,7 @@ module Api
       end
 
       def show
-        @game = Game.find(params[:id])
+        @game = Game.find(params[:dm_id])
         render json: @game
       end
 

@@ -11,6 +11,11 @@ module Api
         render json: @player
       end
 
+      def show
+        @player = Player.find(params[:game_id])
+        render json: @player
+      end
+
       def create
         @player = Player.new(player_params)
         if @player.save

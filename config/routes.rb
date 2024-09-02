@@ -5,13 +5,14 @@ Rails.application.routes.draw do
       resources :conditions
       resources :players
       resources :monsters
+      resources :game
 
-      resources :games do
-        member do
-          get "monsters"
-          post "add_monster"
-          delete "remove_monster/:monster_id", to: "games#remove_monster"
-        end
+        # resources :games do
+        #   member do
+        #     get "monsters"
+        #     post "add_monster"
+        #     delete "remove_monster/:monster_id", to: "games#remove_monster"
+        #  end
       end
 
       resources :users
@@ -30,4 +31,3 @@ Rails.application.routes.draw do
       post "login", to: "users#login"
     end
   end
-end
