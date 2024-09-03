@@ -101,4 +101,29 @@ class PlayerTest < ActiveSupport::TestCase
 
     assert_equal -1, player.cha_bonus
   end
+
+  test "current_hp cannot exceed total_hp" do
+    player = players(:joe)
+    player.total_hp = 20
+    player.current_hp = 30
+
+    assert_not player.valid?
+    assert_includes player.errors[:current_hp], "can't exceed total HP"
+  end
+
+  test "current_hp can equal total_hp" do
+    player = players(:joe)
+    player.total_hp = 20
+    player.current_hp = 20
+
+    assert player.valid?
+  end
+
+  test "current_hp can be less than total_hp" do
+    player = players(:joe)
+    player.total_hp = 20
+    player.current_hp = 15
+
+    assert player.valid?
+  end
 end
