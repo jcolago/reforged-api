@@ -53,4 +53,20 @@ class PlayerTest < ActiveSupport::TestCase
 
     assert_equal -1, player.con_bonus
   end
+
+  test "calling calculate_ability_bonuses for intelligence 20" do
+    player = players(:joe)
+    player.intelligence = 20
+    player.save
+
+    assert_equal 5, player.int_bonus
+  end
+
+  test "calling calculate_ability_bonuses for intelligence 6" do
+    player = players(:joe)
+    player.intelligence = 5
+    player.save
+
+    assert_equal -3, player.int_bonus
+  end
 end
