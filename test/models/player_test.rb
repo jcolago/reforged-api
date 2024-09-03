@@ -85,4 +85,20 @@ class PlayerTest < ActiveSupport::TestCase
 
     assert_equal 0, player.wis_bonus
   end
+
+  test "calling calculate_ability_bonuses for charisma 20" do
+    player = players(:joe)
+    player.charisma = 20
+    player.save
+
+    assert_equal 5, player.cha_bonus
+  end
+
+  test "calling calculate_ability_bonuses for charisma 8" do
+    player = players(:joe)
+    player.charisma = 8
+    player.save
+
+    assert_equal -1, player.cha_bonus
+  end
 end
