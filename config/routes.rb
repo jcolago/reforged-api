@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  namespase :api do
+  namespace :api do
     namespace :v1 do
       resources :player_conditions
       resources :conditions
       resources :players
       resources :monsters
-      resources :game
+      resources :games
 
         # resources :games do
         #   member do

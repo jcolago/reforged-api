@@ -1,16 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  character: MyString
-  image: MyString
+joe:
+  name: Joe
+  character: Enavalion the Half Elf
+  image: some-url-here
   level: 1
   current_hp: 1
   total_hp: 1
   armor_class: 1
   speed: 1
   initiative_bonus: 1
-  strenght: 1
+  strength: 1
   str_bonus: 1
   str_save: 1
   dexterity: 1
@@ -28,8 +28,8 @@ one:
   charisma: 1
   cha_bonus: 1
   cha_save: 1
-  displayed: false
-  game_id: 1
+  displayed: true
+  game: game_one
 
 two:
   name: MyString
@@ -41,7 +41,7 @@ two:
   armor_class: 1
   speed: 1
   initiative_bonus: 1
-  strenght: 1
+  strength: 1
   str_bonus: 1
   str_save: 1
   dexterity: 1
@@ -60,4 +60,4 @@ two:
   cha_bonus: 1
   cha_save: 1
   displayed: false
-  game_id: 1
+  game: game_one

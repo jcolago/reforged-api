@@ -54,7 +54,7 @@ module Api
       def player_params
         params.require(:player).permit(:name, :character, :image, :level, :current_hp, :total_hp,
                                        :armor_class, :speed, :initiative_bonus,
-                                       :strenght, :str_save,
+                                       :strength, :str_save,
                                        :dexterity, :dex_save,
                                        :constitution, :con_save,
                                        :intelligence, :int_save,

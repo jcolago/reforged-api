@@ -10,7 +10,7 @@ class CreatePlayers < ActiveRecord::Migration[7.2]
       t.integer :armor_class
       t.integer :speed
       t.integer :initiative_bonus
-      t.integer :strenght
+      t.integer :strength
       t.integer :str_bonus
       t.integer :str_save
       t.integer :dexterity
@@ -29,10 +29,9 @@ class CreatePlayers < ActiveRecord::Migration[7.2]
       t.integer :cha_bonus
       t.integer :cha_save
       t.boolean :displayed
-      t.integer :game_id
+      t.references :game
 
       t.timestamps
     end
-    add_index :players, :game_id
   end
 end

@@ -3,5 +3,4 @@ class Game < ApplicationRecord
   has_many :monsters
 
   validates :name, presence: true
-  validates :dm_id, presence: true
 end

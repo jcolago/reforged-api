@@ -15,8 +15,6 @@ class Player < ApplicationRecord
 
   ABILITY_SCORES = [ :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma ]
 
-  private
-
   def current_hp_not_exceeding_total_hp
     if current_hp > total_hp
       errors.add(:current_hp, "can't exceed total HP")
@@ -25,7 +23,7 @@ class Player < ApplicationRecord
 
   def calculate_ability_bonuses
     ABILITY_SCORES.each do |ability|
-      score = send(ability)
+      score = send(ability.to_s)
       bonus = calculate_bonus(score)
       send("#{ability.to_s[0..2]}_bonus=", bonus)
     end

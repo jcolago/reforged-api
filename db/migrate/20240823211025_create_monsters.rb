@@ -11,11 +11,9 @@ class CreateMonsters < ActiveRecord::Migration[7.2]
       t.integer :p_bonus
       t.string :attacks
       t.boolean :displayed
-      t.integer :game_id
+      t.references :game
 
       t.timestamps
     end
-
-    add_index :monsters, :game_id
   end
 end

@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+game_one:
   name: MyString
-  dm_id: 1
+  dm: dm
 
 two:
   name: MyString
-  dm_id: 1
+  dm: dm

@@ -3,7 +3,7 @@
 one:
   name: MyString
   size: 1
-  alignmanet: 1
+  alignment: 1
   armor_class: 1
   hit_points: 1
   speed: 1
@@ -11,12 +11,12 @@ one:
   p_bonus: 1
   attacks: MyString
   displayed: false
-  game_id: 1
+  game: game_one
 
 two:
   name: MyString
   size: 1
-  alignmanet: 1
+  alignment: 1
   armor_class: 1
   hit_points: 1
   speed: 1
@@ -24,4 +24,4 @@ two:
   p_bonus: 1
   attacks: MyString
   displayed: false
-  game_id: 1
+  game: game_one

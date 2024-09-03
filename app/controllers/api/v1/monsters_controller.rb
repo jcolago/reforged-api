@@ -60,7 +60,7 @@ module Api
       private
 
       def monster_params
-        params.require(:monster).permit(:name, :size, :alignmanet, :armor_class, :hit_points, :speed, :resistances, :p_bonus, :attacks, :displayed)
+        params.require(:monster).permit(:name, :size, :alignment, :armor_class, :hit_points, :speed, :resistances, :p_bonus, :attacks, :displayed)
       end
     end
   end

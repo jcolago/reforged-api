@@ -2,10 +2,10 @@
 
 one:
   condition_length: 1
-  condition_id: 1
-  player_id: 1
+  condition: superhero
+  player: joe
 
 two:
   condition_length: 1
-  condition_id: 1
-  player_id: 1
+  condition: poisoned
+  player: joe
