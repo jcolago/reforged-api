@@ -1,9 +1,55 @@
 require "test_helper"
 
 class PlayerTest < ActiveSupport::TestCase
-  test "the name should be present" do
-    player = players(:joe)
-    assert_equal player.name, "Joe"
+  setup do
+    @player = players(:joe)
+  end
+
+  test "valid player" do
+    assert @player.valid?
+  end
+
+  test "invalid without name" do
+    @player.name = nil
+    assert_not @player.valid?
+    assert_includes @player.errors[:name], "can't be blank"
+  end
+
+  test "invalid without character" do
+    @player.character = nil
+    assert_not @player.valid?
+    assert_includes @player.errors[:character], "can't be blank"
+  end
+
+  test "invalid with non-integer attributes" do
+    integer_attributes = [ :level, :current_hp, :total_hp, :armor_class, :speed, :initiative_bonus,
+                          :strength, :str_save, :dexterity, :dex_save, :constitution, :con_save,
+                          :intelligence, :int_save, :wisdom, :wis_save, :charisma, :cha_save ]
+
+    integer_attributes.each do |attr|
+      @player[attr] = "not an integer"
+      assert_not @player.valid?
+      assert_includes @player.errors[attr], "is not a number"
+      @player.reload  # Reset for next iteration
+    end
+  end
+
+  test "invalid without game" do
+    @player.game = nil
+    assert_not @player.valid?
+    assert_includes @player.errors[:game], "must exist"
+  end
+
+  test "displayed must be boolean" do
+    @player.displayed = nil
+    assert_not @player.valid?
+    assert_includes @player.errors[:displayed], "is not included in the list"
+
+    @player.displayed = true
+    assert @player.valid?
+
+    @player.displayed = false
+    assert @player.valid?
   end
 
   test "calling calculate_ability_bonuses for strenth 20" do
