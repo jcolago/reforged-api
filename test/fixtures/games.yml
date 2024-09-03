@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 game_one:
-  name: MyString
+  name: Curse of Strahd
   dm: dm
 
 two:
-  name: MyString
+  name: Ebberon
   dm: dm
