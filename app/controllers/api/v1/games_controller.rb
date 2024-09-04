@@ -20,6 +20,27 @@ module Api
         end
       end
 
+      # For later after auth is set up
+      # def index
+      #   @games = Game.where(dm_id: current_user.id)
+      #   render json: @games
+      # end
+
+      # def show
+      #   @game = Game.find(params[:id])
+      #   render json: @game
+      # end
+
+      # def create
+      #   @game = Game.new(game_params)
+      #   @game.dm_id = current_user.id
+      #   if @game.save
+      #     render json: @game, status: :created
+      #   else
+      #     render json: @game.errors, status: :unprocessable_entity
+      #   end
+      # end
+
       def update
         @game = Game.find(params[:id])
         if @game.update(game_params)
