@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :player_conditions
       resources :conditions
-      resources :players
+      resources :players do
+        member do
+          patch "update_hp"
+        end
+      end
       resources :monsters do
         collection do
           get "monsters"
