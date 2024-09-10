@@ -2,12 +2,16 @@ module Api
   module V1
     class GamesController < ApplicationController
       def index
-        @games = Game.all
+        if params[:user_id]
+          @games = Game.where(dm_id: params[:user_id])
+        else
+          @games = Game.all
+        end
         render json: @games
       end
 
       def show
-        @game = Game.find(params[:dm_id])
+        @game = Game.find(params[:id])
         render json: @game
       end
 
@@ -19,27 +23,6 @@ module Api
           render json: @game.errors, status: :unprocessable_entity
         end
       end
-
-      # For later after auth is set up
-      # def index
-      #   @games = Game.where(dm_id: current_user.id)
-      #   render json: @games
-      # end
-
-      # def show
-      #   @game = Game.find(params[:id])
-      #   render json: @game
-      # end
-
-      # def create
-      #   @game = Game.new(game_params)
-      #   @game.dm_id = current_user.id
-      #   if @game.save
-      #     render json: @game, status: :created
-      #   else
-      #     render json: @game.errors, status: :unprocessable_entity
-      #   end
-      # end
 
       def update
         @game = Game.find(params[:id])

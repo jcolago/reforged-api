@@ -4,6 +4,6 @@ game_one:
   name: Curse of Strahd
   dm: dm
 
-two:
+game_two:
   name: Ebberon
-  dm: dm
+  dm: other_dm
