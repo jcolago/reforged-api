@@ -4,7 +4,13 @@ Rails.application.routes.draw do
       resources :player_conditions
       resources :conditions
       resources :players
-      resources :monsters
+      resources :monsters do
+        collection do
+          get "monsters"
+          post "add_monster"
+          delete "remove_monster"
+        end
+      end
       resources :games
       resources :users
       end

@@ -16,7 +16,7 @@ module Api
         if @monster.save
           render json: @monster, status: :created
         else
-          render json: @monster.errors, status: :unprocessable_entity
+          render json: { errors: @monster.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
@@ -60,7 +60,7 @@ module Api
       private
 
       def monster_params
-        params.require(:monster).permit(:name, :size, :alignment, :armor_class, :hit_points, :speed, :resistances, :p_bonus, :attacks, :displayed)
+        params.require(:monster).permit(:name, :size, :alignment, :armor_class, :hit_points, :speed, :resistances, :p_bonus, :attacks, :displayed, :game_id)
       end
     end
   end

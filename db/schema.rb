@@ -30,8 +30,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_26_222919) do
 
   create_table "monsters", force: :cascade do |t|
     t.string "name"
-    t.string "size"
-    t.string "alignment"
+    t.integer "size"
+    t.integer "alignment"
     t.integer "armor_class"
     t.integer "hit_points"
     t.integer "speed"
@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_26_222919) do
     t.integer "p_bonus"
     t.string "attacks"
     t.boolean "displayed"
-    t.bigint "game_id"
+    t.bigint "game_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_monsters_on_game_id"
@@ -98,4 +98,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_26_222919) do
   end
 
   add_foreign_key "games", "users", column: "dm_id"
+  add_foreign_key "monsters", "games", on_delete: :cascade
 end

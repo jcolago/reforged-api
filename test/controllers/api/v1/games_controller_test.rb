@@ -58,6 +58,20 @@ class Api::V1::GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :no_content
   end
 
+  test "should destroy game and associated monsters" do
+    game = games(:game_one)
+    monster_count = game.monsters.count
+
+    assert_difference("Game.count", -1) do
+      assert_difference("Monster.count", -monster_count) do
+        delete api_v1_game_url(game)
+      end
+    end
+
+    assert_response :no_content
+    assert_equal 0, Monster.where(game_id: game.id).count
+  end
+
   test "should not create game with invalid params" do
     assert_no_difference("Game.count") do
       post api_v1_games_url, params: { game: { name: "", dm_id: @user.id } }
