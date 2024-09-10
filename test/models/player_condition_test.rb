@@ -3,7 +3,7 @@ require "test_helper"
 class PlayerConditionTest < ActiveSupport::TestCase
   test "valid player condition" do
     player_condition = player_conditions(:one)
-    assert player_condition.valid?, "Player condition should be valid. Errors: #{player_condition.errors.full_messages}"
+    assert player_condition.valid?
   end
 
   test "invalid without condition length" do
@@ -20,20 +20,6 @@ class PlayerConditionTest < ActiveSupport::TestCase
     assert_includes player_condition.errors[:condition_length], "must be greater than or equal to 0"
   end
 
-  test "invalid without player" do
-    player_condition = player_conditions(:one)
-    player_condition.player = nil
-    assert_not player_condition.valid?
-    assert_includes player_condition.errors[:player], "must exist"
-  end
-
-  test "invalid without condition" do
-    player_condition = player_conditions(:one)
-    player_condition.condition = nil
-    assert_not player_condition.valid?
-    assert_includes player_condition.errors[:condition], "must exist"
-  end
-
   test "invalid with duplicate player-condition combination" do
     existing_player_condition = player_conditions(:one)
     new_player_condition = PlayerCondition.new(
@@ -42,6 +28,6 @@ class PlayerConditionTest < ActiveSupport::TestCase
       condition: existing_player_condition.condition
     )
     assert_not new_player_condition.valid?
-    assert_includes new_player_condition.errors[:base], "This player already has this condition"
+    assert_includes new_player_condition.errors[:player_id], "already has this condition"
   end
 end

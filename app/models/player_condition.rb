@@ -5,7 +5,7 @@ class PlayerCondition < ApplicationRecord
   validates :condition_length, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :player_id, presence: true
   validates :condition_id, presence: true
-  validate :unique_player_condition_combination
+  validates :player_id, uniqueness: { scope: :condition_id, message: "already has this condition" }
 
   private
 
