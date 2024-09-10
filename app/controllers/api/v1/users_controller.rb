@@ -1,67 +1,57 @@
-require "test_helper"
+module Api
+  module V1
+    class UsersController < ApplicationController
+      def index
+        @users = User.all
+        render json: @users.as_json(except: :password_digest)
+      end
 
-class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @user = users(:dm)
-    @user_params = {
-      email: "newuser@example.com",
-      password: "password123",
-      password_confirmation: "password123"
-    }
-  end
+      def show
+        @user = User.find(params[:id])
+        render json: @user.as_json(except: :password_digest)
+      end
 
-  test "should get index" do
-    get api_v1_users_url
-    assert_response :success
-    users = JSON.parse(response.body)
-    assert_equal User.count, users.length
-    assert_not users.first.key?("password_digest"), "Password digest should not be included in response"
-  end
+      def create
+        @user = User.new(user_params)
+        if @user.save
+          render json: @user.as_json(except: :password_digest), status: :created
+        else
+          render json: @user.errors, status: :unprocessable_entity
+        end
+      end
 
-  test "should show user" do
-    get api_v1_user_url(@user)
-    assert_response :success
-    user_response = JSON.parse(response.body)
-    assert_equal @user.email, user_response["email"]
-    assert_not user_response.key?("password_digest"), "Password digest should not be included in response"
-  end
+      def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+          render json: @user.as_json(except: :password_digest)
+        else
+          render json: @user.errors, status: :unprocessable_entity
+        end
+      end
 
-  test "should create user" do
-    assert_difference("User.count") do
-      post api_v1_users_url, params: { user: @user_params }
+      def destroy
+        @user = User.find(params[:id])
+        @user.games.destroy_all  # First, destroy all associated games
+        @user.destroy            # Then, destroy the user
+        head :no_content
+      end
+
+      private
+
+      def user_params
+        params.require(:user).permit(:email, :password, :password_confirmation)
+      end
+
+      # Need to revisit this, will check in when front end is set up
+      def login
+        @user = User.find_by(email: params[:email])
+        if @user&.authenticate(params[:password])
+
+          render json: { message: "Logged in successfully", user_id: @user.id }
+        else
+          render json: { error: "Invalid email or password" }, status: :unauthorized
+        end
+      end
     end
-
-    assert_response :created
-    new_user = JSON.parse(response.body)
-    assert_equal @user_params[:email], new_user["email"]
-    assert_not new_user.key?("password_digest"), "Password digest should not be included in response"
-  end
-
-  test "should not create user with invalid params" do
-    assert_no_difference("User.count") do
-      post api_v1_users_url, params: { user: @user_params.merge(email: "") }
-    end
-
-    assert_response :unprocessable_entity
-  end
-
-  test "should update user" do
-    patch api_v1_user_url(@user), params: { user: { email: "updated@example.com" } }
-    assert_response :success
-    @user.reload
-    assert_equal "updated@example.com", @user.email
-  end
-
-  test "should not update user with invalid params" do
-    patch api_v1_user_url(@user), params: { user: { email: "" } }
-    assert_response :unprocessable_entity
-  end
-
-  test "should destroy user" do
-    assert_difference("User.count", -1) do
-      delete api_v1_user_url(@user)
-    end
-
-    assert_response :no_content
   end
 end
