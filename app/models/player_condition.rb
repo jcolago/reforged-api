@@ -10,7 +10,9 @@ class PlayerCondition < ApplicationRecord
   private
 
   def unique_player_condition_combination
-    if PlayerCondition.where(player_id: player_id, condition_id: condition_id).exists?
+    existing_condition = PlayerCondition.where(player_id: player_id, condition_id: condition_id)
+    existing_condition = existing_condition.where.not(id: id) if persisted?
+    if existing_condition.exists?
       errors.add(:base, "This player already has this condition")
     end
   end

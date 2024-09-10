@@ -31,33 +31,33 @@ joe:
   displayed: true
   game: game_one
 
-two:
-  name: MyString
-  character: MyString
-  image: MyString
+jane:
+  name: Jane
+  character: Lyra the Human Wizard
+  image: another-url-here
   level: 1
-  current_hp: 1
-  total_hp: 1
-  armor_class: 1
-  speed: 1
-  initiative_bonus: 1
-  strength: 1
-  str_bonus: 1
-  str_save: 1
-  dexterity: 1
-  dex_bonus: 1
-  dex_save: 1
-  constitution: 1
+  current_hp: 8
+  total_hp: 8
+  armor_class: 12
+  speed: 30
+  initiative_bonus: 2
+  strength: 8
+  str_bonus: -1
+  str_save: -1
+  dexterity: 14
+  dex_bonus: 2
+  dex_save: 2
+  constitution: 13
   con_bonus: 1
   con_save: 1
-  intelligence: 1
-  int_bonus: 1
-  int_save: 1
-  wisdom: 1
+  intelligence: 16
+  int_bonus: 3
+  int_save: 5
+  wisdom: 12
   wis_bonus: 1
   wis_save: 1
-  charisma: 1
-  cha_bonus: 1
-  cha_save: 1
-  displayed: false
+  charisma: 10
+  cha_bonus: 0
+  cha_save: 0
+  displayed: true
   game: game_one
