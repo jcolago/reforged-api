@@ -30,8 +30,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_26_222919) do
 
   create_table "monsters", force: :cascade do |t|
     t.string "name"
-    t.integer "size"
-    t.integer "alignment"
+    t.string "size"
+    t.string "alignment"
     t.integer "armor_class"
     t.integer "hit_points"
     t.integer "speed"

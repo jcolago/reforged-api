@@ -1,27 +1,27 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  size: 1
-  alignment: 1
-  armor_class: 1
-  hit_points: 1
-  speed: 1
-  resistances: MyString
-  p_bonus: 1
-  attacks: MyString
-  displayed: false
+  name: MyMonster
+  size: :medium
+  alignment: :neutral_good
+  armor_class: 10
+  hit_points: 20
+  speed: 30
+  resistances: Fire,Cold
+  p_bonus: 2
+  attacks: Bite,Claw
+  displayed: true
   game: game_one
 
 two:
-  name: MyString
-  size: 1
-  alignment: 1
-  armor_class: 1
-  hit_points: 1
-  speed: 1
-  resistances: MyString
-  p_bonus: 1
-  attacks: MyString
+  name: AnotherMonster
+  size: :large
+  alignment: :chaotic_neutral
+  armor_class: 12
+  hit_points: 25
+  speed: 35
+  resistances: Lightning,Poison
+  p_bonus: 3
+  attacks: Slam,Tail
   displayed: false
   game: game_one
