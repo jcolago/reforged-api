@@ -23,8 +23,8 @@ class PlayerTest < ActiveSupport::TestCase
   test "invalid with non-integer attributes" do
     player = players(:joe)
     integer_attributes = [ :level, :current_hp, :total_hp, :armor_class, :speed, :initiative_bonus,
-                          :strength, :str_save, :dexterity, :dex_save, :constitution, :con_save,
-                          :intelligence, :int_save, :wisdom, :wis_save, :charisma, :cha_save ]
+                          :strength, :strength_save, :dexterity, :dexterity_save, :constitution, :constitution_save,
+                          :intelligence, :intelligence_save, :wisdom, :wisdom_save, :charisma, :charisma_save ]
 
     integer_attributes.each do |attr|
       player[attr] = "not an integer"
@@ -59,7 +59,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.strength = 20
     player.save
 
-    assert_equal 5, player.str_bonus
+    assert_equal 5, player.strength_bonus
   end
 
   test "calling calculate_ability_bonuses for strenth 0" do
@@ -67,7 +67,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.strength = 0
     player.save
 
-    assert_equal -5, player.str_bonus
+    assert_equal -5, player.strength_bonus
   end
 
   test "calling calculate_ability_bonuses for dexterity 20" do
@@ -75,7 +75,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.dexterity = 20
     player.save
 
-    assert_equal 5, player.dex_bonus
+    assert_equal 5, player.dexterity_bonus
   end
 
   test "calling calculate_ability_bonuses for dexterity 14" do
@@ -83,7 +83,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.dexterity = 6
     player.save
 
-    assert_equal -2, player.dex_bonus
+    assert_equal -2, player.dexterity_bonus
   end
 
   test "calling calculate_ability_bonuses for constitution 20" do
@@ -91,7 +91,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.constitution = 20
     player.save
 
-    assert_equal 5, player.con_bonus
+    assert_equal 5, player.constitution_bonus
   end
 
   test "calling calculate_ability_bonuses for constitution 8" do
@@ -99,7 +99,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.constitution = 8
     player.save
 
-    assert_equal -1, player.con_bonus
+    assert_equal -1, player.constitution_bonus
   end
 
   test "calling calculate_ability_bonuses for intelligence 20" do
@@ -107,7 +107,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.intelligence = 20
     player.save
 
-    assert_equal 5, player.int_bonus
+    assert_equal 5, player.intelligence_bonus
   end
 
   test "calling calculate_ability_bonuses for intelligence 5" do
@@ -115,7 +115,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.intelligence = 5
     player.save
 
-    assert_equal -3, player.int_bonus
+    assert_equal -3, player.intelligence_bonus
   end
 
   test "calling calculate_ability_bonuses for wisdom 20" do
@@ -123,7 +123,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.wisdom = 20
     player.save
 
-    assert_equal 5, player.wis_bonus
+    assert_equal 5, player.wisdom_bonus
   end
 
   test "calling calculate_ability_bonuses for wisdom 6" do
@@ -131,7 +131,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.wisdom = 11
     player.save
 
-    assert_equal 0, player.wis_bonus
+    assert_equal 0, player.wisdom_bonus
   end
 
   test "calling calculate_ability_bonuses for charisma 20" do
@@ -139,7 +139,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.charisma = 20
     player.save
 
-    assert_equal 5, player.cha_bonus
+    assert_equal 5, player.charisma_bonus
   end
 
   test "calling calculate_ability_bonuses for charisma 8" do
@@ -147,7 +147,7 @@ class PlayerTest < ActiveSupport::TestCase
     player.charisma = 8
     player.save
 
-    assert_equal -1, player.cha_bonus
+    assert_equal -1, player.charisma_bonus
   end
 
   test "current_hp cannot exceed total_hp" do
