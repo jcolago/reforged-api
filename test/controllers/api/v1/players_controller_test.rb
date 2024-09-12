@@ -15,17 +15,17 @@ class Api::V1::PlayersControllerTest < ActionDispatch::IntegrationTest
       speed: 30,
       initiative_bonus: 2,
       strength: 14,
-      str_save: 2,
+      strength_save: 2,
       dexterity: 13,
-      dex_save: 1,
+      dexterity_save: 1,
       constitution: 15,
-      con_save: 2,
+      constitution_save: 2,
       intelligence: 12,
-      int_save: 1,
+      intelligence_save: 1,
       wisdom: 10,
-      wis_save: 0,
+      wisdom_save: 0,
       charisma: 11,
-      cha_save: 0,
+      charisma_save: 0,
       displayed: true,
       game_id: @game.id
     }
@@ -103,11 +103,11 @@ class Api::V1::PlayersControllerTest < ActionDispatch::IntegrationTest
     post api_v1_players_url, params: { player: @player_params }
     assert_response :created
     new_player = JSON.parse(response.body)
-    assert_equal 2, new_player["str_bonus"]
-    assert_equal 1, new_player["dex_bonus"]
-    assert_equal 2, new_player["con_bonus"]
-    assert_equal 1, new_player["int_bonus"]
-    assert_equal 0, new_player["wis_bonus"]
-    assert_equal 0, new_player["cha_bonus"]
+    assert_equal 2, new_player["strength_bonus"]
+    assert_equal 1, new_player["dexterity_bonus"]
+    assert_equal 2, new_player["constitution_bonus"]
+    assert_equal 1, new_player["intelligence_bonus"]
+    assert_equal 0, new_player["wisdom_bonus"]
+    assert_equal 0, new_player["charisma_bonus"]
   end
 end
