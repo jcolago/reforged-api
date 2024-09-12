@@ -11,23 +11,23 @@ class CreatePlayers < ActiveRecord::Migration[7.2]
       t.integer :speed
       t.integer :initiative_bonus
       t.integer :strength
-      t.integer :str_bonus
-      t.integer :str_save
+      t.integer :strength_bonus
+      t.integer :strength_save
       t.integer :dexterity
-      t.integer :dex_bonus
-      t.integer :dex_save
+      t.integer :dexterity_bonus
+      t.integer :dexterity_save
       t.integer :constitution
-      t.integer :con_bonus
-      t.integer :con_save
+      t.integer :constitution_bonus
+      t.integer :constitution_save
       t.integer :intelligence
-      t.integer :int_bonus
-      t.integer :int_save
+      t.integer :intelligence_bonus
+      t.integer :intelligence_save
       t.integer :wisdom
-      t.integer :wis_bonus
-      t.integer :wis_save
+      t.integer :wisdom_bonus
+      t.integer :wisdom_save
       t.integer :charisma
-      t.integer :cha_bonus
-      t.integer :cha_save
+      t.integer :charisma_bonus
+      t.integer :charisma_save
       t.boolean :displayed
       t.references :game
 
