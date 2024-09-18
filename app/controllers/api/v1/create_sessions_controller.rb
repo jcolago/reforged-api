@@ -1,2 +1,0 @@
-class CreateSessionsController < ApplicationController
-end
