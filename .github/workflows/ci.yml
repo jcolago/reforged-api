@@ -91,6 +91,13 @@ jobs:
           echo "Bundle list:"
           bundle list
 
+      - name: Debug Zeitwerk autoloading
+        run: |
+          echo "Content of api_controller.rb:"
+          cat app/controllers/api/v1/api_controller.rb || echo "File not found"
+          echo "List of files in app/controllers/api/v1:"
+          ls -R app/controllers/api/v1 || echo "Directory not found"
+
       - name: Setup test database
         env:
           RAILS_ENV: test
