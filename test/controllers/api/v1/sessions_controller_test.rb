@@ -3,7 +3,7 @@ require "test_helper"
 class Api::V1::SessionsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
-    @user.update(password: 'password123', password_confirmation: 'password123')
+    @user.update(password: "password123", password_confirmation: "password123")
   end
 
   test "login with valid credentials" do
