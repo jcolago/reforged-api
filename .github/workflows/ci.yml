@@ -19,8 +19,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Scan for common Rails security vulnerabilities
+        run: bundle exec brakeman --no-pager
 
   lint:
     runs-on: ubuntu-latest
@@ -34,8 +37,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install dependencies
+        run: bundle install
+
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: bundle exec rubocop
 
   test:
     runs-on: ubuntu-latest
@@ -50,8 +56,10 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y libpq-dev libvips
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -62,16 +70,33 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install project dependencies
+        run: |
+          bundle config set --local without 'development'
+          bundle install --jobs 4 --retry 3
+
+      - name: Print environment info
+        run: |
+          ruby -v
+          rails -v
+          bundle list
+
       - name: Setup test database
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_database
         run: |
-          bin/rails db:create
-          bin/rails db:schema:load
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
 
       - name: Run tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_database
-        run: bin/rails test
+        run: bundle exec rails test
+
+      - name: Run system tests
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_database
+        run: bundle exec rails test:system
