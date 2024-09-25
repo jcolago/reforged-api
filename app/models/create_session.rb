@@ -1,2 +1,0 @@
-class CreateSession < ApplicationRecord
-end
