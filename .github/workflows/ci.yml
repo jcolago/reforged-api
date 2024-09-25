@@ -62,12 +62,6 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Print environment info
-        run: |
-          ruby -v
-          rails -v
-          bundle list
-
       - name: Setup test database
         env:
           RAILS_ENV: test
