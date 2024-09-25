@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  resource :session
-  resources :passwords, param: :token
-  get "logout", to: "sessions#destroy", as: :logout
   namespace :api do
     namespace :v1 do
       post :login, to: "sessions#login"
       get :me, to: "sessions#me"
-
+      delete :logout, to: "sessions#logout"
       resources :player_conditions
       resources :conditions
       resources :players do
