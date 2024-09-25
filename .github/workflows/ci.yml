@@ -20,7 +20,9 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          gem install rails
+          bundle install
 
       - name: Scan for common Rails security vulnerabilities
         run: bundle exec brakeman --no-pager
@@ -38,7 +40,9 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          gem install rails
+          bundle install
 
       - name: Lint code for consistent style
         run: bundle exec rubocop
@@ -72,13 +76,19 @@ jobs:
 
       - name: Install project dependencies
         run: |
+          gem install rails
           bundle config set --local without 'development'
           bundle install --jobs 4 --retry 3
 
       - name: Print environment info
         run: |
+          echo "Ruby version:"
           ruby -v
-          rails -v
+          echo "Rails version:"
+          bundle exec rails -v
+          echo "Gem list:"
+          gem list
+          echo "Bundle list:"
           bundle list
 
       - name: Setup test database
