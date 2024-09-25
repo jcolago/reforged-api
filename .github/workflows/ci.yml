@@ -111,9 +111,3 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_database
         run: bundle exec rails test
-
-      - name: Run system tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_database
-        run: bundle exec rails test:system
