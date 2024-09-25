@@ -22,5 +22,7 @@ class Api::SessionsController < Api::ApiController
   end
 
   def logout
+    Current.session.destroy
+    render json: { message: "Logged out successfully." }
   end
 end

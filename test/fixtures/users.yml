@@ -7,3 +7,7 @@ dm:
 other_dm:
   email: other@example.com
   password_digest: <%= BCrypt::Password.create('password') %>
+
+one:
+  email: "testemail@test.com"
+  password_digest: "$2a$12$ag8yl0P5y3S5nU2KuSrA8.fXxFCK0KJblU4UIwULLqzQEEW45NXla"

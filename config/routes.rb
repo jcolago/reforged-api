@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources :create_sessions
+  resource :session
+  resources :passwords, param: :token
+  get "logout", to: "sessions#destroy", as: :logout
   namespace :api do
     namespace :v1 do
+      post :login, to: "sessions#login"
+      get :me, to: "sessions#me"
+
       resources :player_conditions
       resources :conditions
       resources :players do
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
       get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
       # Defines the root path route ("/")
-      # root "posts#index"
+      root "pages#home"
       post "login", to: "users#login"
     end
   end
