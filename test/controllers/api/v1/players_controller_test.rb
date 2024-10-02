@@ -31,12 +31,22 @@ class Api::V1::PlayersControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test "should get index" do
+  test "should get index of all players" do
     get api_v1_players_url
     assert_response :success
     players = JSON.parse(response.body)
     assert_equal Player.count, players.length
   end
+
+  test "should get index of players for a specific game" do
+    get api_v1_players_url, params: { game_id: @game.id }
+    assert_response :success
+    players = JSON.parse(response.body)
+    players.each do |player|
+      assert_equal @game.id, player["game_id"]
+    end
+  end
+
 
   test "should show player" do
     get api_v1_player_url(@player)

@@ -2,7 +2,11 @@ module Api
   module V1
     class PlayersController < ApplicationController
       def index
-        @players = Player.all
+        if params[:game_id]
+          @players = Player.where(game: params[:game_id])
+        else
+          @players = Player.all
+        end
         render json: @players
       end
 
