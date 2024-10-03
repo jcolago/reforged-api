@@ -20,11 +20,20 @@ class Api::V1::MonstersControllerTest < ActionDispatch::IntegrationTest
     assert @game.persisted?, "Game fixture does not exist in the database"
   end
 
-  test "should get index" do
+  test "should get index of all monsters" do
     get api_v1_monsters_url
     assert_response :success
     monsters = JSON.parse(response.body)
     assert_equal Monster.count, monsters.length
+  end
+
+  test "Should get index of monsters for a specific game" do
+    get api_v1_monsters_url, params: { game_id: @game.id }
+    assert_response :success
+    monsters = JSON.parse(response.body)
+    monsters.each do |monster|
+      assert_equal @game.id, monster["game_id"]
+    end
   end
 
   test "should show monster" do

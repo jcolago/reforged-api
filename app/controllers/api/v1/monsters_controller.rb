@@ -3,7 +3,7 @@ module Api
     class MonstersController < ApplicationController
       def index
         if params[:game_id]
-          @monster = Monster.where(game: params[:game_id])
+          @monsters = Monster.where(game: params[:game_id])
         else
           @monsters = Monster.all
         end
