@@ -4,8 +4,12 @@ module Api
       before_action :set_player_condition, only: [ :show, :update, :destroy ]
 
       def index
-        @player_conditions = PlayerCondition.all
-        render json: @player_conditions
+        if params[:player_id]
+          @player_conditions = PlayerCondition.where(player: params[:player_id])
+        else
+          @player_conditions = PlayerCondition.all
+        end
+          render json: @player_conditions
       end
 
       def show

@@ -2,7 +2,11 @@ module Api
   module V1
     class MonstersController < ApplicationController
       def index
-        @monsters = Monster.all
+        if params[:game_id]
+          @monster = Monster.where(game: params[:game_id])
+        else
+          @monsters = Monster.all
+        end
         render json: @monsters
       end
 
