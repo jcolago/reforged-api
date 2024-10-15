@@ -25,7 +25,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "jwt"
 
 # Use Kaminari for data pagination
-gem "kaminari"
+# gem "kaminari"
 
 gem "rack-cors"
 
