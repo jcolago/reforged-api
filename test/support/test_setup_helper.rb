@@ -58,7 +58,7 @@ module TestSetupHelper
   end
 
   def login_user(user)
-    post api_v1_login_url, params: { email: user.email, password: 'password123' }
-    JSON.parse(response.body)['token']
+    post api_v1_login_url, params: { email: user.email, password: "password123" }
+    JSON.parse(response.body)["token"]
   end
 end
