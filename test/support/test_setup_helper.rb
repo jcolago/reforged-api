@@ -39,7 +39,7 @@ module TestSetupHelper
       displayed: true,
       game_id: @game.id
     }
-    
+
     @monster_params = {
       name: "New Monster",
       size: :medium,

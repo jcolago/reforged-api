@@ -7,7 +7,7 @@ class Api::V1::GamesControllerTest < ActionDispatch::IntegrationTest
     setup_test_data
     # @auth_token = login_user(@user)
   end
-  
+
   test "should get all games" do
     get api_v1_games_url
     assert_response :success
