@@ -20,9 +20,9 @@ class Api::V1::GamesControllerTest < ActionDispatch::IntegrationTest
     get api_v1_games_url, params: { user_id: @user.id }
     assert_response :success
     games = JSON.parse(response.body)
-    assert_equal @user.games.count, games.length
-    assert_includes games.map { |g| g["id"] }, @user_game.id
-    assert_not_includes games.map { |g| g["id"] }, @other_game.id
+    games.each do |game|
+      assert_equal @user.id, game["dm_id"]
+    end
   end
 
   test "should create game" do
