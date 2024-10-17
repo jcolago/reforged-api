@@ -1,34 +1,11 @@
 require "test_helper"
 
 class Api::V1::PlayersControllerTest < ActionDispatch::IntegrationTest
+  include TestSetupHelper
+
   setup do
-    @player = players(:joe)
-    @game = games(:game_one)
-    @player_params = {
-      name: "New Player",
-      character: "New Character",
-      image: "new-url-here",
-      level: 2,
-      current_hp: 15,
-      total_hp: 20,
-      armor_class: 16,
-      speed: 30,
-      initiative_bonus: 2,
-      strength: 14,
-      strength_save: 2,
-      dexterity: 13,
-      dexterity_save: 1,
-      constitution: 15,
-      constitution_save: 2,
-      intelligence: 12,
-      intelligence_save: 1,
-      wisdom: 10,
-      wisdom_save: 0,
-      charisma: 11,
-      charisma_save: 0,
-      displayed: true,
-      game_id: @game.id
-    }
+    setup_test_data
+    # @auth_token = login_user(@user)
   end
 
   test "should get index of all players" do

@@ -9,9 +9,11 @@ module TestSetupHelper
     @player = players(:joe)
     @monster = monsters(:one)
     @condition = conditions(:poisoned)
+    @other_condition = conditions(:superhero)
     @player_condition = player_conditions(:one)
 
     @game_params = { name: "New Game", dm_id: @user.id }
+
     @player_params = {
       name: "New Player",
       character: "New Character",
@@ -23,14 +25,21 @@ module TestSetupHelper
       speed: 30,
       initiative_bonus: 2,
       strength: 14,
+      strength_save: 2,
       dexterity: 13,
+      dexterity_save: 1,
       constitution: 15,
+      constitution_save: 2,
       intelligence: 12,
+      intelligence_save: 1,
       wisdom: 10,
+      wisdom_save: 0,
       charisma: 11,
+      charisma_save: 0,
       displayed: true,
       game_id: @game.id
     }
+    
     @monster_params = {
       name: "New Monster",
       size: :medium,
@@ -44,12 +53,15 @@ module TestSetupHelper
       displayed: true,
       game_id: @game.id
     }
+
     @condition_params = { name: "New Condition" }
+
     @player_condition_params = {
       condition_length: 2,
       player_id: @player.id,
       condition_id: @condition.id
     }
+
     @user_params = {
       email: "newuser@example.com",
       password: "password123",

@@ -1,10 +1,11 @@
 require "test_helper"
 
 class Api::V1::ConditionsControllerTest < ActionDispatch::IntegrationTest
+  include TestSetupHelper
+
   setup do
-    @condition = conditions(:poisoned)
-    @other_condition = conditions(:superhero)
-    @condition_params = { name: "New Condition" }
+    setup_test_data
+    # @auth_token = login_user(@user)
   end
 
   test "should get index" do

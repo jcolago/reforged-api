@@ -1,15 +1,11 @@
 require "test_helper"
 
 class Api::V1::PlayerConditionsControllerTest < ActionDispatch::IntegrationTest
+  include TestSetupHelper
+
   setup do
-    @player_condition = player_conditions(:one)
-    @player = players(:jane)
-    @condition = Condition.create!(name: "Temporary Test Condition #{Time.now.to_i}")
-    @player_condition_params = {
-      condition_length: 2,
-      player_id: @player.id,
-      condition_id: @condition.id
-    }
+    setup_test_data
+    # @auth_token = login_user(@user)
   end
 
   test "should get index" do

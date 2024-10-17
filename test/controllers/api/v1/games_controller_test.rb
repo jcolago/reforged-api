@@ -1,14 +1,13 @@
 require "test_helper"
 
 class Api::V1::GamesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @game = games(:game_one)
-    @user = users(:dm)
-    @other_user = users(:other_dm)
-    @user_game = games(:game_one)
-    @other_game = games(:game_two)
-  end
+  include TestSetupHelper
 
+  setup do
+    setup_test_data
+    # @auth_token = login_user(@user)
+  end
+  
   test "should get all games" do
     get api_v1_games_url
     assert_response :success

@@ -1,23 +1,11 @@
 require "test_helper"
 
 class Api::V1::MonstersControllerTest < ActionDispatch::IntegrationTest
+  include TestSetupHelper
+
   setup do
-    @monster = monsters(:one)
-    @game = games(:game_one)
-    @monster_params = {
-      name: "New Monster",
-      size: :medium,
-      alignment: :neutral_good,
-      armor_class: 15,
-      hit_points: 30,
-      speed: 25,
-      resistances: "Fire,Ice",
-      p_bonus: 3,
-      attacks: "Bite,Scratch",
-      displayed: true,
-      game_id: @game.id
-    }
-    assert @game.persisted?, "Game fixture does not exist in the database"
+    setup_test_data
+    # @auth_token = login_user(@user)
   end
 
   test "should get index of all monsters" do
