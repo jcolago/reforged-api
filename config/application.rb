@@ -29,6 +29,8 @@ module MyApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.active_support.to_time_preserves_timezone = :zone
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins "http://localhost:5173" # Vite's default port
