@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       post :login, to: "sessions#login"
       get :me, to: "sessions#me"
       delete :logout, to: "sessions#logout"
-      
+
       resources :player_conditions
       resources :conditions
       resources :players do
