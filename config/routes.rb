@@ -13,13 +13,7 @@ Rails.application.routes.draw do
           patch "/players/:id/toggle_display", to: "players#toggle_display"
         end
       end
-      resources :monsters do
-        collection do
-          get "monsters"
-          post "add_monster"
-          delete "remove_monster"
-        end
-      end
+      resources :monsters
       resources :games
       resources :users
     end
