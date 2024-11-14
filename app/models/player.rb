@@ -5,6 +5,7 @@ class Player < ApplicationRecord
   validates :level, :current_hp, :total_hp, :armor_class, :speed, :initiative_bonus, :strength, :strength_save, :dexterity, :dexterity_save, :constitution, :constitution_save, :intelligence, :intelligence_save, :wisdom, :wisdom_save,  :charisma, :charisma_save, presence: true, numericality: { only_integer: true }
   validates :displayed, inclusion: { in: [ true, false ] }
   validates :game_id, presence: true
+  validates :character_class, presence: true
 
   has_many :player_conditions
   has_many :conditions, through: :player_conditions
