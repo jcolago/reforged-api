@@ -30,6 +30,7 @@ joe:
   charisma_save: 1
   displayed: true
   game: game_one
+  character_class: fighter
 
 jane:
   name: Jane
@@ -61,3 +62,4 @@ jane:
   charisma_save: 0
   displayed: true
   game: game_one
+  character_class: rouge

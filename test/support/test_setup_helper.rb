@@ -37,7 +37,8 @@ module TestSetupHelper
       charisma: 11,
       charisma_save: 0,
       displayed: true,
-      game_id: @game.id
+      game_id: @game.id,
+      character_class: "fighter"
     }
 
     @monster_params = {

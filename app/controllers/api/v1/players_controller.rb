@@ -68,7 +68,7 @@ module Api
                                        :intelligence, :intelligence_save,
                                        :wisdom, :wisdom_save,
                                        :charisma, :charisma_save,
-                                       :displayed, :game_id)
+                                       :displayed, :game_id, :character_class)
       end
     end
   end
