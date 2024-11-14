@@ -48,6 +48,15 @@ module Api
         end
       end
 
+      def toggle_display
+        @player = Player.find(params[:id])
+        if @player.update(displayed: params[:displayed])
+          render json: @player
+        else
+          render json: { error: @player.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def player_params

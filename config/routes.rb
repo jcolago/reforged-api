@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :players do
         member do
           patch "update_hp"
+          patch '/players/:id/toggle_display', to: 'players#toggle_display'
         end
       end
       resources :monsters do
