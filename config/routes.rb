@@ -9,16 +9,18 @@ Rails.application.routes.draw do
       resources :conditions
       resources :players do
         member do
-          patch "update_hp"
-          patch "/players/:id/toggle_display", to: "players#toggle_display"
+          patch :toggle_display
+          patch :update_hp
         end
       end
       resources :monsters do
+        member do
+          patch :toggle_display
+        end
         collection do
-          get "monsters"
-          post "add_monster"
-          delete "remove_monster"
-          patch "/monsters/:id/toggle_display", to: "monsters#toggle_dispay"
+          get :monsters
+          post :add_monster
+          delete :remove_monster
         end
       end
       resources :games

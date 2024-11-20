@@ -96,4 +96,34 @@ class Api::V1::MonstersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :no_content
   end
+
+  test "should toggle monster display to true" do
+    @monster.update(displayed: false)
+    patch toggle_display_api_v1_monster_url(@monster),
+          params: { displayed: true },
+          headers: { Authorization: "Bearer #{@auth_token}" }
+
+    assert_response :success
+    @monster.reload
+    assert @monster.displayed
+  end
+
+  test "should toggle monster display to false" do
+    @monster.update(displayed: true)
+    patch toggle_display_api_v1_monster_url(@monster),
+          params: { displayed: false },
+          headers: { Authorization: "Bearer #{@auth_token}" }
+
+    assert_response :success
+    @monster.reload
+    assert_not @monster.displayed
+  end
+
+  test "should return unprocessable entity for invalid monster display toggle" do
+    patch toggle_display_api_v1_monster_url(@monster),
+          params: { displayed: nil },
+          headers: { Authorization: "Bearer #{@auth_token}" }
+
+    assert_response :unprocessable_entity
+  end
 end

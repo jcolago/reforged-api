@@ -96,4 +96,34 @@ class Api::V1::PlayersControllerTest < ActionDispatch::IntegrationTest
     assert_equal 0, new_player["wisdom_bonus"]
     assert_equal 0, new_player["charisma_bonus"]
   end
+
+  test "should toggle player display to true" do
+    @player.update(displayed: false)
+    patch toggle_display_api_v1_player_url(@player),
+          params: { displayed: true },
+          headers: { Authorization: "Bearer #{@auth_token}" }
+
+    assert_response :success
+    @player.reload
+    assert @player.displayed
+  end
+
+  test "should toggle player display to false" do
+    @player.update(displayed: true)
+    patch toggle_display_api_v1_player_url(@player),
+          params: { displayed: false },
+          headers: { Authorization: "Bearer #{@auth_token}" }
+
+    assert_response :success
+    @player.reload
+    assert_not @player.displayed
+  end
+
+  test "should return unprocessable entity for invalid player display toggle" do
+    patch toggle_display_api_v1_player_url(@player),
+          params: { displayed: nil },
+          headers: { Authorization: "Bearer #{@auth_token}" }
+
+    assert_response :unprocessable_entity
+  end
 end
