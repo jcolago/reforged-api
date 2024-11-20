@@ -61,6 +61,15 @@ module Api
         head :no_content
       end
 
+      def toggle_display
+        @monster = Monster.find(params[:id])
+        if @monster.update(displayed: params[:displayed])
+          render json: @monster
+        else
+          render json: { error: @monster.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def monster_params

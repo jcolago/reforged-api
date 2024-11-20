@@ -18,6 +18,7 @@ Rails.application.routes.draw do
           get "monsters"
           post "add_monster"
           delete "remove_monster"
+          patch "/monsters/:id/toggle_display", to: "monsters#toggle_dispay"
         end
       end
       resources :games
